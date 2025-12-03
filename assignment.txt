@@ -1,0 +1,36 @@
+1. Why is MVVM important? Which files represent Model, which files represent
+View, and which files represent ViewModel?
+Separation of concerns. MVVM allows us to separate which to be viewed, which to store the data,
+and which to control the request between view (front, displaying data) and model (back, managing data).
+Maintaining a clean separation between application logic and the UI helps address numerous development issues
+and makes an application easier to test, maintain, and evolve. It can also significantly improve code re-use opportunities
+and allows developers and UI designers to collaborate more easily when developing their respective parts of an app (https://learn.microsoft.com/en-us/dotnet/architecture/maui/mvvm).
+
+Movie.kt is the Model, activity_main.xml and activity_details.xml are the views (which managed by its class file),
+MovieViewModel is the view model, managing the movie fetching process from the repository, and the repository (Movie Repository) fetches the data
+from the database.
+
+2. In Part 1, you implemented Data Binding, why is this more efficient than using
+the normal method?
+The Data Binding compiler generates a binding class that creates references to all views in a layout in a single pass during initialization.
+It maps the views to fields in the generated Java/Kotlin class. This eliminates the need for repeated hierarchy traversals at runtime.
+Another thing also, Data Binding shifts from imperative to declarative logic, meaning that Data Binding allows the XML layout
+to "listen" to the data source directly.
+
+3. In Part 2, you implemented the Singleton Pattern, why is this important?
+Singleton pattern allows the program ONLY have one instance at a time, making the program is more efficient in using the resource.
+It checks whether a class is already has an object/not. If already, return the object, otherwise make the new object.
+
+4. In Part 2 & 3, you implemented the Repository Pattern, why is this important?
+Same as implementing MVVM, implementing repository pattern also adheres to the separation of concerns principle. Without a Repository,
+the ViewModel would be tightly coupled to specific data sources, leading to a fragile codebase.
+
+5. In part 3, you implemented the Worker Manager, is there another way to refresh
+your database with the latest data other than using Worker?
+Yes, there are several ways to refresh the database, but the correct choice depends entirely on the urgency of the task and the state of the
+application. I chose WorkManager because it handles deferrable, guaranteed background work (meaning it must run even if the user exits the app.
+Another alternatives for Worker Manager:
+a. Coroutines
+b. Foreground Services
+c. Firebase Cloud Messaging
+d. AlarmManager
