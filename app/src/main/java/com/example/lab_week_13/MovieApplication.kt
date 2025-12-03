@@ -16,6 +16,10 @@ class MovieApplication : Application() {
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
 
+        // create a MovieDatabase instance
+        val movieDatabase =
+            MovieDatabase.getInstance(applicationContext)
+
         // create a MovieService instance
         // and bind the MovieService interface to the Retrofit instance
         // this allows us to make API calls
@@ -23,6 +27,6 @@ class MovieApplication : Application() {
             MovieService::class.java
         )
         // create a MovieRepository instance
-        movieRepository = MovieRepository(movieService)
+        movieRepository = MovieRepository(movieService = movieService, movieDatabase = movieDatabase)
     }
 }
