@@ -4,10 +4,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
+    kotlin("kapt")
 }
 
 android {
-    namespace = "com.example.test_lab_week_12"
+    namespace = "com.example.lab_week_13"
     compileSdk = 36
 
     val localProperties = Properties()
@@ -24,6 +25,7 @@ android {
         viewBinding = true
         buildConfig = true
         resValues = true
+        dataBinding = true
     }
 
     defaultConfig {
